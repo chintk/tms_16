@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: [:destroy, :create]
 
   def new
+    @user = User.new
   end
 
   def show

@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20150205091152) do
 
   create_table "activities", force: :cascade do |t|
-    t.string   "type"
+    t.integer  "type"
     t.integer  "user_id"
     t.integer  "course_id"
     t.integer  "subject_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150205091152) do
   end
 
   create_table "enrollment_subjects", force: :cascade do |t|
+    t.boolean  "status"
     t.integer  "user_id"
     t.integer  "course_id"
     t.integer  "subject_id"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150205091152) do
   create_table "enrollment_tasks", force: :cascade do |t|
     t.date     "begin"
     t.date     "end"
+    t.boolean  "status"
     t.integer  "user_id"
     t.integer  "course_id"
     t.integer  "subject_id"
@@ -78,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150205091152) do
   add_index "enrollment_tasks", ["user_id"], name: "index_enrollment_tasks_on_user_id"
 
   create_table "enrollments", force: :cascade do |t|
+    t.boolean  "status"
     t.integer  "user_id"
     t.integer  "course_id"
     t.datetime "created_at", null: false

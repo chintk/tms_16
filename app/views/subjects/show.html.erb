@@ -1,0 +1,25 @@
+<% provide(:title, @subject.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @subject.name %>
+      </h1>
+      <%= @subject.description %>
+    </section>
+    <% if @tasks.any? %>
+      <h3>Tasks (<%= @tasks.count %>)</h3>
+      <ol class="entries">
+        <%= render @tasks %>
+      </ol>
+    <% end %> 
+  </aside>
+  <div class="col-md-8"> 
+   <% if @members.any? %>
+      <h3>Members (<%= @members.count %>)</h3>
+      <ol class="entries">
+        <%= render @members %>
+      </ol>
+    <% end %>  
+  </div>
+</div>

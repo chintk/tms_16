@@ -12,4 +12,7 @@ User.create!(name:  "Example User",
               email: email,
               password:              password,
               password_confirmation: password)
+  Course.create!(name: name, description: email)
+  Subject.create!(name: email, description: password)
+  Task.create!(name: password, description: name, subject_id: 1)
 end

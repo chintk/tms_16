@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
-  has_many :enrollments
-  has_many :enrollment_subjects
-  has_many :enrollment_tasks
-  has_many :activities
+  has_many :enrollments, :dependent => :destroy
+  has_many :enrollment_subjects, :dependent => :destroy
+  has_many :subjects, through: :enrollment_subjects
+  has_many :enrollment_tasks, :dependent => :destroy
+  has_many :tasks, through: :enrollment_tasks
+  has_many :activities, :dependent => :destroy
 
   before_save   :downcase_email
   validates :name,  presence: true, length: {maximum: 50}

@@ -3,6 +3,7 @@ class CreateEnrollmentTasks < ActiveRecord::Migration
     create_table :enrollment_tasks do |t|
       t.date :begin
       t.date :end
+      t.boolean :status
       t.references :user, index: true
       t.references :course, index: true
       t.references :subject, index: true

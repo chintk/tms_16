@@ -1,0 +1,5 @@
+<li>
+  <%= link_to subject.name, suppervisor_subject_path(subject) %>
+  | <%= link_to "delete", suppervisor_subject_path(subject), 
+    method: :delete, data: {confirm: "You sure?"} %>
+</li>

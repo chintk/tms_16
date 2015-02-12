@@ -1,6 +1,7 @@
 class CreateEnrollments < ActiveRecord::Migration
   def change
     create_table :enrollments do |t|
+      t.boolean :status
       t.references :user, index: true
       t.references :course, index: true
 

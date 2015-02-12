@@ -1,0 +1,11 @@
+<li>  
+  <%= link_to enrollment_subject.subject.name, enrollment_subject.subject %>
+  <% if !enrollment_subject.status %>
+    <%= form_for enrollment_subject do |f| %>
+      <%= f.hidden_field :status, value: true %>
+      <%= f.submit "Completed", class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <input type="button" value="Finish"/>
+  <% end %>
+</li>

@@ -6,9 +6,17 @@
         <%= gravatar_for @user %>
         <%= @user.name %>        
       </h1>
-      <% @user.suppervisor? ? 'Suppervisor' : 'Member' %>
+      Member
     </section>
   </aside>
   <div class="col-md-8">
+    <% if !@subjects.nil? %>
+      <h1>
+        List subjects
+      </h1>
+      <ul class="users">
+        <%= render @subjects %>
+      </ul>
+    <% end %>
   </div>
 </div>

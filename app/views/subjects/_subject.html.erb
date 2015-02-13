@@ -1,0 +1,13 @@
+<li>  
+  <p>
+    <h3><%= subject.name %></h3>
+    <h4>
+      <%= subject.enrollment_subjects.find_by(user_id: current_user.id).status ? "Finish" : "Training" %>
+    </h4>
+    <br>
+    <%= subject.description %>
+  </p>
+  <p>
+  <%= render subject.tasks %>
+  </p>  
+</li>

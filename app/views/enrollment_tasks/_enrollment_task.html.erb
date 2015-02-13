@@ -1,0 +1,11 @@
+<li>
+  <%= enrollment_task.task.name %>
+  <% if !enrollment_task.status %>
+    <%= form_for enrollment_task do |f| %>
+      <%= f.hidden_field :status, value: true %>
+      <%= f.submit "Completed", class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <input type="button" value="Finish"/>
+  <% end %>
+</li>

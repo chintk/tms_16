@@ -1,0 +1,4 @@
+<li>
+  <%= task.name %>
+  | <%= task.enrollment_tasks.find_by(user_id: current_user.id).status ? "Finish" : "Training" %>
+</li>

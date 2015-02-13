@@ -8,6 +8,10 @@
           <li>
             <%= link_to "Members", suppervisor_user? ? suppervisor_users_path : users_path %>
           </li>
+          <li>
+            <%= link_to "Subjects", suppervisor_user? ? 
+            suppervisor_subjects_path : enrollment_subjects_path %>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>

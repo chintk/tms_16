@@ -1,5 +1,11 @@
 <li>  
   <%= link_to enrollment_subject.subject.name, enrollment_subject.subject %>
+  <p>
+  <%= enrollment_subject.subject.description %>
+  </p>
+  <p>
+  <%= render enrollment_subject.subject.tasks %>
+  </p>
   <% if !enrollment_subject.status %>
     <%= form_for enrollment_subject do |f| %>
       <%= f.hidden_field :status, value: true %>

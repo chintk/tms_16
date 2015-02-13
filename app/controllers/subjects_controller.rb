@@ -8,7 +8,6 @@ class SubjectsController < ApplicationController
   def show
     @subject = current_user.subjects.find params[:id]
     @tasks = @subject.tasks.all
-    @members = @subject.users.all
   end
 
   private

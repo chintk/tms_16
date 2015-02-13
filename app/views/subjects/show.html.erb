@@ -6,20 +6,14 @@
         <%= @subject.name %>
       </h1>
       <%= @subject.description %>
-    </section>
-    <% if @tasks.any? %>
+    </section>    
+  </aside>
+  <div class="col-md-8"> 
+  <% if @tasks.any? %>
       <h3>Tasks (<%= @tasks.count %>)</h3>
       <ol class="entries">
         <%= render @tasks %>
       </ol>
-    <% end %> 
-  </aside>
-  <div class="col-md-8"> 
-   <% if @members.any? %>
-      <h3>Members (<%= @members.count %>)</h3>
-      <ol class="entries">
-        <%= render @members %>
-      </ol>
-    <% end %>  
+    <% end %>   
   </div>
 </div>

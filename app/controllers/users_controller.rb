@@ -8,7 +8,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    @subjects = @user.subjects.all
+    if current_user? @user
+      @enrollment_subjects = current_user.enrollment_subjects.all
+    end
   end
 
   def edit

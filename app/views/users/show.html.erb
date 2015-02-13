@@ -8,12 +8,14 @@
       </h1>
       Member
     </section>
-    <h1>
-      List subjects
-    </h1>
-    <ul class="users">
-      <%= render @subjects %>
-    </ul>
+    <% if !@enrollment_subjects.nil? %>
+      <h1>
+        List subjects
+      </h1>
+      <ul class="users">
+        <%= render @enrollment_subjects %>
+      </ul>
+    <% end %>
   </aside>
   <div class="col-md-8">
   </div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   namespace :suppervisor do
     resources :users
+    resources :subjects
   end
   resources :enrollment_subjects
   resources :enrollment_tasks

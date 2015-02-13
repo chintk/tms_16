@@ -1,0 +1,6 @@
+<li class="fields"> 
+<%= render 'shared/error_messages', object: f.object %> 
+  <%= f.label :name, "Task" %>
+  <%= f.text_field :name %></br>
+  <%= link_to_remove_fields "remove", f %>
+</li>

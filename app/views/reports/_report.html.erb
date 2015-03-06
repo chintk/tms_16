@@ -11,14 +11,17 @@
     </thead>
     <tbody>
       <%= f.fields_for :enrollment_tasks do |builder| %>
-        <tr>
-          <td>
-            <%= builder.object.task.name %>
-          </td>
-          <td>
-            <%= builder.check_box :status %>
-          </td>
-        </tr>
+        <% if current_user?(builder.object.user) && 
+          current_course?(builder.object.course) %>
+          <tr>
+            <td>
+              <%= builder.object.task.name %>
+            </td>
+            <td>
+              <%= builder.check_box :status %>
+            </td>
+          </tr>
+        <% end %>
       <% end %> 
     </tbody>
   </table>

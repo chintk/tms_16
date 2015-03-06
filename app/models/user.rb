@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :activities, dependent: :destroy
 
   before_save :downcase_email
+  after_update :insert_activity
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255}, 
@@ -38,5 +39,11 @@ class User < ActiveRecord::Base
   private
   def downcase_email
     self.email = email.downcase
+  end
+
+  def insert_activity
+    if :courses.nil? && :subjects.nil? && :tasks.nil?
+      @activity = self.activities.build acti: 3
+    end
   end
 end

@@ -11,7 +11,7 @@ class Suppervisor::CourseSubjectsController < ApplicationController
   end
 
   def update
-    if params[:course_subject][:end]
+    if params[:id]
       @course_subject = CourseSubject.find params[:id]
       @course_subject.update_attributes course_subject_finish_params
       flash[:success] = "Subject finished!"

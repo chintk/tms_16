@@ -8,9 +8,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    if current_user?(@user) && !@user.suppervisor?
+    if current_user?(@user) && !@user.suppervisor? && current_course
       @subjects = current_course.subjects
     end
+    @activities = current_user.activities.last 10
   end
 
   def edit
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    if @user.update_attributes(user_params)
+    if @user.update_attributes user_params
       flash[:success] = 'Profile updated'
       redirect_to @user
     else

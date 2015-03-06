@@ -17,6 +17,7 @@ class Course < ActiveRecord::Base
     if self.begin && self.end.nil?
       rebuild_enrollment_subjects
       rebuild_enrollment_tasks
+      insert_activity
       start_subject
     end
   end
@@ -56,5 +57,12 @@ class Course < ActiveRecord::Base
 
   def finish_subjects
     self.course_subjects.each{|cs| cs.update_attributes end: self.end} if self.end
+  end
+
+  def insert_activity
+    self.users.normal.each do |user|
+      @activity = self.activities.build acti: 1, user: user
+      @activity.save  
+    end
   end
 end

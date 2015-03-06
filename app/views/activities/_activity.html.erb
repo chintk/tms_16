@@ -1,0 +1,18 @@
+<li>
+  <% if activity.user.avatar_url.nil? %>
+    <%= gravatar_for activity.user %>
+  <% else %>
+    <%= image_tag activity.user.avatar.thumbnail.url %>
+  <% end %>
+  <%= link_to activity.user.name, activity.user %>
+  <% if activity.acti == 1 %>
+    has started course <%=activity.course.name %>.
+  <% else %>
+    <% if activity.acti == 2 %>
+      has completed <%= activity.task.nil? ? 
+      "subject #{activity.subject.name}" : "task #{activity.task.name}" %>.
+    <% end %>
+  <% end %>
+  </br>
+  <%= time_ago_in_words activity.created_at %> ago.
+</li>

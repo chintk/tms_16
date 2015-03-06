@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20150205091152) do
 
   create_table "activities", force: :cascade do |t|
-    t.string   "type"
+    t.integer  "acti"
     t.integer  "user_id"
     t.integer  "course_id"
     t.integer  "subject_id"

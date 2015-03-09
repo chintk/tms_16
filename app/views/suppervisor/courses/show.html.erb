@@ -23,10 +23,10 @@
             <% if course_subject.end.nil? %>
               <%= form_for [:suppervisor, course_subject] do |f| %>
                 <%= f.hidden_field :end, value: Time.now %>
-                <%= f.submit "Finish" %>              
+                <%= f.submit "Finish", class: "btn btn-primary" %>
               <% end %>
             <% else %>
-              Finished
+              <button class="btn btn-default">Finished</button>
             <% end %>
           <% end %>
         </td>

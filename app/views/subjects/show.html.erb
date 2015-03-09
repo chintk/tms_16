@@ -6,6 +6,7 @@
       <th>id</th>
       <th>Name</th>
       <th>Description</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>    
@@ -16,6 +17,7 @@
           <%= link_to subject.name, edit_user_subject_path(current_user, subject) %>
         </td>
         <td><%= subject.description %></td>
+        <td><%= subject.status(current_user, current_course) ? "Finish" : "Training" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -13,11 +13,21 @@ class SubjectsController < ApplicationController
 
   def update
     @subject = Subject.find params[:id]
-    if @subject.update_attributes subject_params
-      flash[:success] = 'Subject updated'
-      redirect_to current_user
+    if params[:subject][:status]
+      @es = @subject.enrollment_subjects.find_by course_id: current_course.id, user_id: current_user.id
+      if @es.update_attributes es_params
+        flash[:success] = 'Subject status updated'
+        redirect_to course_subjects_url current_course
+      else
+        render 'edit'  
+      end
     else
-      render 'edit'  
+      if @subject.update_attributes subject_params
+        flash[:success] = 'Subject updated'
+        redirect_to current_user
+      else
+        render 'edit'  
+      end
     end
   end
 
@@ -25,6 +35,10 @@ class SubjectsController < ApplicationController
   def subject_params
     params.require(:subject).permit(enrollment_tasks_attributes: 
       [:id, :user_id, :course_id, :task_id, :status])
+  end
+
+  def es_params
+    params.require(:subject).permit :status
   end
 
   def correct_subject

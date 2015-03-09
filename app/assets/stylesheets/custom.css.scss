@@ -197,7 +197,15 @@ input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
-  @include box_sizing;
+  @include box_sizing;  
+}
+
+input[type="checkbox"]{
+  width: auto;
+}
+
+input[type="file"]{
+  display: unset;
 }
 
 input {
@@ -225,6 +233,9 @@ input {
   span {
     margin-left: 20px;
     font-weight: normal;
+  }
+  input[type="checkbox"]{
+    margin-left: 0;
   }
 }
 

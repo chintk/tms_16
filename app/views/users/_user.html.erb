@@ -5,5 +5,5 @@
     <%= image_tag user.avatar.thumbnail.url %>
   <% end %>
   <%= link_to user.name, user %>
-  | <%= user.suppervisor? ? 'Suppervisor' : 'Member' %>
+  <p><%= user.suppervisor? ? 'Suppervisor' : 'Member' %></p>
 </li>

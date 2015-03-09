@@ -13,6 +13,7 @@ class Course < ActiveRecord::Base
   after_save :start_subject_and_add_enrollment_subjects
   after_save :finish_subjects
 
+  private
   def start_subject_and_add_enrollment_subjects
     if self.begin && self.end.nil?
       rebuild_enrollment_subjects
@@ -22,7 +23,6 @@ class Course < ActiveRecord::Base
     end
   end
 
-  private
   def rebuild_enrollment_subjects
     self.users.normal.each do |user|
       user.subjects << self.subjects      

@@ -3,27 +3,27 @@
 </h2>
 <%= form_for :course, url: suppervisor_course_enrollments_path,
           method: :patch do |f| %>
-<table class="table">
-  <thead>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Selected</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= collection_check_boxes(:course, :user_ids, User.all, :id, :name) do |b|%>
     <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Selected</th>
+      <th scope="row"><%= b.object.id %></th> 
+      <td>
+        <%= link_to b.text, suppervisor_user_path(b.object) %>
+      </td>
+      <td>
+        <%= b.label(:"data-value" => b.value) {b.check_box} %>
+      </td>
     </tr>
-  </thead>
-  <tbody>
-  <%= collection_check_boxes(:course, :user_ids, User.all, :id, :name) do |b|%>
-  <tr>
-    <th scope="row"><%= b.object.id %></th> 
-    <td>
-      <%= link_to b.text, suppervisor_user_path(b.object) %>
-    </td>
-    <td>
-      <%= b.label(:"data-value" => b.value) {b.check_box} %>
-    </td>
-  </tr>
-  <% end %> 
-  </tbody>
-</table>  
-<button type="submit" class="btn btn-primary">Save</button>
+    <% end %> 
+    </tbody>
+  </table>  
+  <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>

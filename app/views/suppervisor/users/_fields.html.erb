@@ -15,7 +15,9 @@
 <%= f.label :Change_avartar %>
 <div class="gravatar_edit">
   <% if @user.avatar_url.nil? %>
-    <%= gravatar_for @user %>
+    <% if !@user.email.nil? %>
+      <%= gravatar_for @user %>
+    <% end %>
   <% else %>
     <%= image_tag @user.avatar.thumbnail.url %>
   <% end %>

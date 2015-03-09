@@ -10,11 +10,10 @@ class Suppervisor::EnrollmentsController < ApplicationController
     course = Course.find params[:course_id]
     if course.update_attributes enrollment_params
       flash[:success] = "Assigned!"
-      redirect_to suppervisor_course_path params[:course_id]
     else
-      flash[:error] = "Sorry! somthing get wrong, we are woking on it."
-      redirect_to suppervisor_course_enrollments_path params[:course_id]
+      flash[:danger] = "Sorry! somthing get wrong, we are woking on it."
     end
+    redirect_to suppervisor_courses_url
   end
 
   def enrollment_params

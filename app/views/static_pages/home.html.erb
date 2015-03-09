@@ -1,4 +1,5 @@
 <% if logged_in? %>
+  <% provide(:title, "Course activities") %>
   <% if !@activities.nil? %>
     <% provide :title, "Course activities" %>
     <h1>Activities</h1>   
@@ -7,13 +8,13 @@
     </ul>   
   <% end %>
 <% else %>
+  <% provide(:title, "Welcome") %>
   <div class="center jumbotron">
-    <h1>Welcome to Framgia Training System</h1>
+    <h1>Framgia Training Management System</h1>
     <h2>
-      This is the home page for the
-      <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-      Framgia Training System.
+      This is the project
+      <a href="https://tms16.herokuapp.com/">TMS_16</a>
+      develop by team 7: Le Minh Tuan, Nguyen Thi Kim Chi.
     </h2>
   </div>
-  <%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/images/' %>
 <% end %>

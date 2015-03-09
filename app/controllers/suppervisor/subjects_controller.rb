@@ -26,6 +26,7 @@ class Suppervisor::SubjectsController < ApplicationController
   def create
     @subject = Subject.new subject_params
     if @subject.save
+      flash[:success] = "Created new subject"
       redirect_to suppervisor_subjects_url
     else
       render 'new'
@@ -40,14 +41,14 @@ class Suppervisor::SubjectsController < ApplicationController
 
   private
   def subject_params
-    params.require(:subject).permit(:name, :description, tasks_attributes: [:id, :name, :_destroy])
+    params.require(:subject).permit :name, :description, tasks_attributes: [:id, :name, :_destroy]
   end
 
   def admin_user
     if logged_in?
       unless current_user.suppervisor?
         flash[:danger] = "Please log in by suppervisor account."
-        redirect_to(root_url)
+        redirect_to root_url
       end
     else
       store_location

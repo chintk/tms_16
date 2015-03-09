@@ -20,11 +20,10 @@ class Suppervisor::CourseSubjectsController < ApplicationController
       @course = Course.find params[:course_id]
       if @course.update_attributes course_subject_params
         flash[:success] = "Assigned!"
-        redirect_to [:suppervisor, @course]
       else
         flash[:error] = "Sorry! somthing get wrong, we are woking on it."
-        redirect_to suppervisor_course_course_subjects_path params[:course_id]
       end
+      redirect_to suppervisor_courses_url
     end
   end
 

@@ -41,8 +41,7 @@ class Suppervisor::CoursesController < ApplicationController
       flash[:success] = "Updated!"
       redirect_to [:suppervisor, @course]
     else
-      flash[:success] = "Error!"
-      redirect_to suppervisor_courses_url
+      render 'edit'
     end
   end
 

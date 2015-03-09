@@ -19,14 +19,14 @@ class SubjectsController < ApplicationController
         flash[:success] = 'Subject status updated'
         redirect_to course_subjects_url current_course
       else
-        render 'edit'  
+        render 'edit'
       end
     else
       if @subject.update_attributes subject_params
         flash[:success] = 'Subject updated'
         redirect_to current_user
       else
-        render 'edit'  
+        render 'edit'
       end
     end
   end

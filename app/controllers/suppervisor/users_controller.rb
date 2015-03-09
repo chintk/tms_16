@@ -15,7 +15,8 @@ class Suppervisor::UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    if @user.save
+    if @user.save      
+      flash[:success] = "Created new user"
       redirect_to suppervisor_users_url
     else
       render 'new'
@@ -31,7 +32,7 @@ class Suppervisor::UsersController < ApplicationController
     if @user.update_attributes user_params
       if current_user? @user
         flash[:success] = 'Profile updated'      
-        render 'show'
+        redirect_to [:suppervisor, @user]
       else
         flash[:success] = 'Information changed'      
         redirect_to suppervisor_users_url
@@ -49,14 +50,14 @@ class Suppervisor::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :suppervisor, :avatar)
+    params.require(:user).permit :name, :email, :password, :password_confirmation, :suppervisor, :avatar
   end
 
   def admin_user
     if logged_in?
       unless current_user.suppervisor?
         flash[:danger] = 'Please log in by suppervisor account.'
-        redirect_to(root_url)
+        redirect_to root_url
       end
     else
       store_location

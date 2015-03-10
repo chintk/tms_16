@@ -5,7 +5,11 @@
     <%= image_tag user.avatar.thumbnail.url %>
   <% end %>
   <%= link_to user.name, edit_suppervisor_user_path(user) %>
-  <p><%= user.suppervisor? ? 'Suppervisor' : 'Member'%>
-  | <%= link_to_if !current_user?(user), "delete", suppervisor_user_path(user), 
-    method: :delete, data: {confirm: "You sure?"} %></p>
+  <p>
+    <%= user.suppervisor? ? 'Suppervisor' : 'Member'%>
+    <% unless current_user?(user) %>
+      | <%= link_to "delete", suppervisor_user_path(user), 
+        method: :delete, data: {confirm: "You sure?"} %>
+    <% end %>
+  </p>
 </li>

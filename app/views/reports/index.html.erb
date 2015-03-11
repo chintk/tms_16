@@ -1,3 +1,5 @@
 <% provide(:title, current_user.name) %>
-<%= render partial: "report", collection: @subjects, as: "subject" %>
-<%= will_paginate @subjects %>
+<% unless @subjects.nil? %>
+  <%= render partial: "report", collection: @subjects, as: "subject" %>
+  <%= will_paginate @subjects %>
+<% end %>

@@ -2,7 +2,7 @@ class Suppervisor::SubjectsController < ApplicationController
   before_action :admin_user
 
   def index
-    @subjects = Subject.paginate page: params[:page]
+    @subjects = Subject.paginate page: params[:page], per_page: 10
   end
 
   def show

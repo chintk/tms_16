@@ -26,7 +26,7 @@
           suppervisor_course_course_subjects_path(course) %>
         </td>
         <td>
-          <%= link_to_if course.begin.nil?, course.enrollments.count, 
+          <%= link_to course.enrollments.count, 
           suppervisor_course_enrollments_path(course) %>
         </td>
         <td>
@@ -68,3 +68,4 @@
     <% end %> 
   </tbody>
 </table>
+<%= will_paginate @courses %>

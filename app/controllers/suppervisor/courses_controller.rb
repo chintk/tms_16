@@ -2,7 +2,7 @@ class Suppervisor::CoursesController < ApplicationController
   before_action :admin_user
 
   def index
-    @courses = Course.all
+    @courses = Course.paginate page: params[:page], per_page: 10
   end
 
   def create	
@@ -20,13 +20,11 @@ class Suppervisor::CoursesController < ApplicationController
 
   def show
     @course = Course.find params[:id]
-    @subjects = Subject.all
+    @course_subjects = @course.course_subjects.paginate page: params[:page], per_page: 10
   end
 
   def edit
     @course = Course.find params[:id]
-    @course_subject = CourseSubject.new
-    @subjects = Subject.all
   end
 
   def destroy

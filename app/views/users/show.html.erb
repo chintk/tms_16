@@ -12,27 +12,29 @@
       </h1>
       <%= @user.suppervisor? ? 'Suppervisor' : 'Member' %>
     </section>
-    <h1>Activities</h1>
-    <% @activities.each do |activity| %>
-      <li>
-        <% if activity.acti == 3 %>
-          Updated profile.
-        <% else %>
-          <% if activity.acti == 1 %>
-            Started course <%=activity.course.name %>.
+    <% unless @activities.nil? %>
+      <h1>Activities</h1>
+      <% @activities.each do |activity| %>
+        <li>
+          <% if activity.acti == 3 %>
+            Updated profile.
           <% else %>
-            Completed 
-            <%= activity.task.nil? ? "subject #{activity.subject.name}" 
-            : "task #{activity.task.name}" %>.
+            <% if activity.acti == 1 %>
+              Started course <%=activity.course.name %>.
+            <% else %>
+              Completed 
+              <%= activity.task.nil? ? "subject #{activity.subject.name}" 
+              : "task #{activity.task.name}" %>.
+            <% end %>
           <% end %>
-        <% end %>
-        </br>
-        <%= time_ago_in_words activity.created_at %> ago.
-      </li>
+          </br>
+          <%= time_ago_in_words activity.created_at %> ago.
+        </li>
+      <% end %>
     <% end %>
   </aside>
   <div class="col-md-8">
-    <% if !@subjects.nil? %>
+    <% unless @subjects.nil? %>
       <h1>
         <%= current_course.name %>
       </h1>

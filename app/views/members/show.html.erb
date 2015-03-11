@@ -1,7 +1,6 @@
 <% provide(:title, 'Course members') %>
 <h1><%= @course.name %></h1>
-<%= will_paginate %>
 <ul class="users">
   <%= render @members %>
 </ul>
-<%= will_paginate %>
+<%= will_paginate @members %>

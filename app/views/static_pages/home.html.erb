@@ -1,11 +1,12 @@
 <% if logged_in? %>
-  <% provide(:title, "Course activities") %>
-  <% if !@activities.nil? %>
+  <% provide(:title, "Activities") %>
+  <% unless @activities.nil? %>
     <% provide :title, "Course activities" %>
-    <h1>Activities</h1>   
+    <h1>Activities</h1> 
     <ul class="users">
       <%= render @activities %>
     </ul>   
+    <%= will_paginate @activities %>
   <% end %>
 <% else %>
   <% provide(:title, "Welcome") %>

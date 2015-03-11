@@ -3,15 +3,15 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def index
-    @users = User.paginate page: params[:page]
+    @users = User.paginate page: params[:page], per_page: 10
   end
 
   def show
     @user = User.find params[:id]
     if current_user?(@user) && !@user.suppervisor? && current_course
-      @subjects = current_course.subjects
+      @subjects = current_course.subjects.paginate page: params[:page], per_page: 10
+      @activities = current_user.activities.last 10
     end
-    @activities = current_user.activities.last 10
   end
 
   def edit

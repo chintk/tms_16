@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= collection_check_boxes(:course, :subject_ids, Subject.all, :id, :name) do |b|%>
+      <%= collection_check_boxes(:course, :subject_ids, @subjects, :id, :name) do |b|%>
         <tr>
           <th scope="row"><%= b.object.id %></th> 
           <td>
@@ -24,6 +24,6 @@
         </tr>
       <% end %>
     </tbody>
-  </table> 
+  </table>
   <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>

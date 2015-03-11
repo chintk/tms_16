@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6}, allow_blank: true
 
   scope :normal, ->{where(suppervisor: false)}
+  scope :free, ->{where('users.id NOT IN (select enrollments.user_id from enrollments 
+    WHERE enrollments.course_id IN (SELECT courses.id from courses where courses.end IS NULL))')}
   
   class << self
     def digest(string)

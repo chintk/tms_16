@@ -1,29 +1,51 @@
 <h2>Assign users for Course :
   <%= link_to @course.name, suppervisor_course_path(@course)%>
 </h2>
-<%= form_for :course, url: suppervisor_course_enrollments_path,
-          method: :patch do |f| %>
+<% if @course.begin.nil? %>
+  <%= form_for :course, url: suppervisor_course_enrollments_path,
+            method: :patch do |f| %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Selected</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= collection_check_boxes(:course, :user_ids, @users, :id, :name) do |b|%>
+      <tr>
+        <th scope="row"><%= b.object.id %></th> 
+        <td>
+          <%= link_to b.text, suppervisor_user_path(b.object) %>
+        </td>
+        <td>
+          <%= b.label(:"data-value" => b.value) {b.check_box} %>
+        </td>
+      </tr>
+      <% end %> 
+      </tbody>
+    </table>  
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+<% else %>
   <table class="table">
     <thead>
       <tr>
         <th>#</th>
         <th>Name</th>
-        <th>Selected</th>
       </tr>
     </thead>
     <tbody>
-    <%= collection_check_boxes(:course, :user_ids, User.all, :id, :name) do |b|%>
-    <tr>
-      <th scope="row"><%= b.object.id %></th> 
-      <td>
-        <%= link_to b.text, suppervisor_user_path(b.object) %>
-      </td>
-      <td>
-        <%= b.label(:"data-value" => b.value) {b.check_box} %>
-      </td>
-    </tr>
-    <% end %> 
+      <% @ers.each do |er| %>
+        <tr>
+          <th scope="row"><%= er.id %></th> 
+          <td>
+            <%= link_to er.name, suppervisor_user_path(er) %>
+          </td>
+        </tr> 
+      <% end %>      
     </tbody>
-  </table>  
-  <%= f.submit "Save", class: "btn btn-primary" %>
+  </table> 
+  <%= will_paginate @ers %>
 <% end %>

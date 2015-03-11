@@ -4,7 +4,7 @@ class SubjectsController < ApplicationController
 
   def show
     @course = Course.find params[:course_id]
-    @subjects = @course.subjects.paginate page: params[:page]
+    @subjects = @course.subjects.paginate page: params[:page], per_page: 10
   end
 
   def edit

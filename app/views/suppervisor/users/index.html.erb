@@ -1,8 +1,7 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 <%= link_to "Create member", new_suppervisor_user_path %>
-<%= will_paginate %>
 <ul class="users">
   <%= render @users %>
 </ul>
-<%= will_paginate %>
+<%= will_paginate @users %>

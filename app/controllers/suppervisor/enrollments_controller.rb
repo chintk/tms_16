@@ -3,7 +3,8 @@ class Suppervisor::EnrollmentsController < ApplicationController
 
   def show
     @course = Course.find params[:course_id]
-    @users = User.all
+    @users = User.free
+    @ers = @course.users.paginate page: params[:page], per_page: 10
   end
 
   def update
